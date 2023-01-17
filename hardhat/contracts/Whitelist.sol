@@ -1,8 +1,9 @@
-//SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
+// This contract allows for the whitelisting of a limited number of addresses
 contract Whitelist {
-    // Define the maximum number of addresses that can be whitelisted
+    // Define the maximum number of whitelisted addresses
     uint8 public maxWhitelistedAddresses;
 
     // Mapping of addresses to booleans indicating whether they are whitelisted or not
@@ -31,6 +32,7 @@ contract Whitelist {
             numAddressesWhitelisted < maxWhitelistedAddresses,
             "More addresses cant be added, limit reached"
         );
+
         // If both checks pass, add the caller's address to the whitelist and increment the whitelist count
         whitelistedAddresses[msg.sender] = true;
         numAddressesWhitelisted += 1;
