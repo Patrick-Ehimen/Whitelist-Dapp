@@ -21,19 +21,21 @@ contract Whitelist {
     provided that the caller's address has not already been whitelisted and the 
     maximum number of whitelisted addresses has not been reached.*/
     function addAddressToWhitelist() public {
-        // Check if the caller's address has already been whitelisted
+        /* Check if the caller's address has already been whitelisted.
+        If the address has been whitelisted, revert the transaction with an error message. */
         require(
             !whitelistedAddresses[msg.sender],
             "Sender has already been whitelisted"
         );
 
-        // Check if the maximum number of whitelisted addresses has been reached
+        /* Check if the maximum number of whitelisted addresses has been reached.
+        If the maximum number of whitelisted addresses has been reached, revert the transaction with an error message. */
         require(
             numAddressesWhitelisted < maxWhitelistedAddresses,
             "More addresses cant be added, limit reached"
         );
 
-        // If both checks pass, add the caller's address to the whitelist and increment the whitelist count
+        /* If both checks pass, add the caller's address to the whitelist and increment the whitelist count. */
         whitelistedAddresses[msg.sender] = true;
         numAddressesWhitelisted += 1;
     }
